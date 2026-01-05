@@ -17,7 +17,9 @@ To evaluate students' ability to effectively use spreadsheets to process, manipu
 
 ## Assignment 1 Question and Solution
 
-All cells were pre-populated and students were expected to fill in orange-coloured cells (`M3:M6`, `K10:N22`, `C24:N24`. `C25:J25`). For efficiency, 5 named cells/ranges were created as indicated by the green-coloured cells in `M26:N32`. These include `Candle_Counts` (`C24:J24`), `Cost_Per_Candle` (`C4`), `GST` (`C6`), `HST` (`C5`), and `Total_Sales` (`N10:N22`).
+All cells were pre-populated and students were expected to fill in orange-coloured cells (`M3:M6`, `K10:N22`, `C24:N24`, `C25:J25`). 
+
+For efficiency, 5 named cells/ranges were created as indicated by the green-coloured cells in `M26:N32`. These include `Candle_Counts` (`C24:J24`), `Cost_Per_Candle` (`C4`), `GST` (`C6`), `HST` (`C5`), and `Total_Sales` (`N10:N22`).
 
 **1. What is the subtotal for each location?**
 
@@ -122,5 +124,17 @@ All cells were pre-populated and students were expected to fill in orange-colour
 #### Steps:
 - Use **RANK** to rank the total number of candles sold for Balsam Fir in `C24` in `C25` against all other scents across the range defined by `Candle_Counts`, specifying the `[order]` parameter as `0` to rank in descending order.
 - Drag formula to autofill across to `J25`.
+
+***
+
+## Assignment 2 Question and Solution
+
+All cells were pre-populated and students were expected to fill in the following cells (`'Customer Information'!G9:L34`, `'Customer Information'!K36`, `'Candle Information'!D3:F10`, `'Candle Information'!D12:F12`). 
+
+For efficiency, 5 named cells/ranges were created as indicated by the green-coloured cells in `'Customer Information'!B36:C42`. These include `Candle_Scent_Costs` (`'Candle Information'!B3:C10`), `Discount` (`'Customer Information'!C3`), `GST` (`'Customer Information'!C6`), `Minimum_order_for_Discount` (`'Customer Information'!C4`), and `PST` (`'Customer Information'!C5`).
+
+***
+
+## Assignment 3 Question and Solution
 
 ***
