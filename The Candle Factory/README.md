@@ -129,9 +129,176 @@ For efficiency, 5 named cells/ranges were created as indicated by the green-colo
 
 ## Assignment 2 Question and Solution
 
-All cells were pre-populated and students were expected to fill in the following cells (`'Customer Information'!G9:L34`, `'Customer Information'!K36`, `'Candle Information'!D3:F10`, `'Candle Information'!D12:F12`). 
+All cells were pre-populated and students were expected to fill in the following cells: `'Customer Information'!G9:L34`, `'Customer Information'!K36`, `'Candle Information'!D3:F10`, `'Candle Information'!D12:F12`. 
 
 For efficiency, 5 named cells/ranges were created as indicated by the green-coloured cells in `'Customer Information'!B36:C42`. These include `Candle_Scent_Costs` (`'Candle Information'!B3:C10`), `Discount` (`'Customer Information'!C3`), `GST` (`'Customer Information'!C6`), `Minimum_order_for_Discount` (`'Customer Information'!C4`), and `PST` (`'Customer Information'!C5`).
+
+***
+
+**1. What is the subtotal for each order?**
+
+````excel
+=VLOOKUP(E9,Candle_Scent_Costs,2,FALSE)*F9
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Use **VLOOKUP** in `G9` to retrieve price of the candle scent ordered by Axel Allen, where `E9` specifies the candle scent `lookup_value` parameter, `Candle_Scent_Costs` is the `table_array` parameter, `2` refers to the `col_index_num` parameter, and `FALSE` to find an exact match.
+- Multiply the VLOOKUP value by the number of candles ordered in `F9`.
+- Drag formula to autofill down to `G34`.
+
+***
+
+**2. What is the discount for each order?**
+
+````excel
+=IF(F9>=Minimum_order_for_Discount,G9*Discount,0)
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Use **IF** in `H9` to create a logical test where in the case that the number of candles ordered (`F9`) is >= `Minimum_order_for_Discount`, then calculate the discount as the subtotal (`G9`) multipled by the discount percentage (`Discount`). Otherwise, if the statement is not true, return `0`.
+- Drag formula to autofill down to `H34`.
+
+***
+
+**3. What is the PST for each order?**
+
+````excel
+=G9*PST
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Multiply the subtotal in `G9` by `PST` in `I9`.
+- Drag formula to autofill down to `I34`.
+
+***
+
+**4. What is the GST for each order?**
+
+````excel
+=G9*GST
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Multiply the subtotal in `G9` by `GST` in `J9`.
+- Drag formula to autofill down to `J34`.
+
+***
+
+**5. What is the total for each order?**
+
+````excel
+=SUM(G9,I9,J9,-H9)
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Use **SUM** in `K9` to add up the subtotal in `G9`, discount in `H9`, PST in `I9`, and GST in `J9`. A `-` is placed in front of the `H9` discount value to subtract the discount amount. 
+- Drag formula to autofill down to `K34`.
+
+***
+
+**6. Write a personal message for each order with the following format: Thank you [first name] [last name] for purchasing [candle scent] candles from The Candle Factory! (If there was a discount: You saved $[discount]!)**
+
+````excel
+=CONCATENATE("Thank you ",D9," ",C9," for purchasing ",E9," candles from The Candle Factory! ",IF(H9>0,CONCATENATE("You saved $",H9,"!"),""))
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Use **CONCATENATE** in `L9` to form the message with static and dynamic parameters.
+- Use **IF** to create a logical test in the final parameter where in the case that there is a discount (`H9>0`), use CONCATENATE to add the discount sentence to the message. Otherwise, if the statement is not true, return a blank space (`""`). 
+- Drag formula to autofill down to `L34`.
+
+***
+
+**7. What is the grand total of all orders?**
+
+````excel
+=SUM(K9:K34)
+````
+
+#### Steps:
+- In the `Customer Information` sheet:
+- Use **SUM** to add up the totals from all orders in the range of `K9:K34` in `K36`.
+
+***
+
+**8. What is the number of orders for each candle scent?**
+
+````excel
+=COUNTIF('Customer Information'!$E$9:$E$34,'Candle Information'!B3)
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **COUNTIF** in `'Candle Information'!D3` to create a conditional statement to count the number of orders in the range of `'Customer Information'!$E$9:$E$34` in the case that the candle scent ordered is equal to `'Candle Information'!B3`. The range uses `$` to create an absolute reference to ensure the same range is used when the formula is copied down.
+- Drag formula to autofill down to `'Candle Information'!D10`.
+
+***
+
+**9. What is the total number of candles sold for each candle scent?**
+
+````excel
+=SUMIF('Customer Information'!$E$9:$E$34,'Candle Information'!B3,'Customer Information'!$F$9:$F$34)
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **SUMIF** in `'Candle Information'!E3` to create a conditional statement to add up the number of candles sold in the range of `'Customer Information'!$F$9:$F$34` in the case that the candle scent ordered (`'Customer Information'!$E$9:$E$34`) is equal to `'Candle Information'!B3`. Absolute references are created for the ranges to ensure the same range is used when the formula is copied down.
+- Drag formula to autofill down to `'Candle Information'!E10`.
+
+***
+
+**10. What is the total number of orders with discounted candles for each candle scent?**
+
+````excel
+=COUNTIFS('Customer Information'!$E$9:$E$34,'Candle Information'!B3,'Customer Information'!$H$9:$H$34,">0")
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **COUNTIFS** in `'Candle Information'!F3` to create a conditional statement to count the number of orders in the case that the candle scent ordered (`'Customer Information'!$E$9:$E$34`) is equal to `'Candle Information'!B3` and there is a discount (`'Customer Information'!$H$9:$H$34,">0"`). Absolute references are created for the ranges to ensure the same range is used when the formula is copied down.
+- Drag formula to autofill down to `'Candle Information'!F10`.
+
+***
+
+**11. What is the total number of orders across all candle scents?**
+
+````excel
+=SUM(D3:D10)
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **SUM** to add up the number of orders from all candle scents in the range of `D3:D10` in `D12`.
+
+***
+
+**12. What is the total number of candles sold across all candle scents?**
+
+````excel
+=SUM(E3:E10)
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **SUM** to add up the total number of candles sold from all candle scents in the range of `E3:E10` in `E12`.
+
+***
+
+**13. What is the total number of orders with discounted candles across all candle scents?**
+
+````excel
+=SUM(F3:F10)
+````
+
+#### Steps:
+- In the `Candle Information` sheet:
+- Use **SUM** to add up the total number of orders with discounted candles from all candle scents in the range of `F3:F10` in `F12`.
 
 ***
 
