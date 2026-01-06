@@ -139,17 +139,36 @@ Please provide any excel, google sheet, or data points used in your analysis as 
 
 #### Answer:
 
-| Relative Demand | Earth | Mars | Mercury | Venus |
-| --------------- | ----- | ---- | ------- | ----- |
-| Very High       | 1     | 9    | 17      | 0     |
-| High            | 15    | 141  | 34      | 0     |
-| Medium          | 44    | 18   | 72      | 12    |
-| Low             | 1     | 39   | 2       | 355   |
-| Very Low        | 1     | 123  | 0       | 13    |
-|                 |       |      |         |       |
-| Demand Sum      | 200   | 864  | 441     | 759   |
-| Demand Rank     | 4     | 1    | 3       | 2     |
+| Targeted Category         | Earth | Mars | Mercury | Venus |
+| ------------------------- | ----- | ---- | ------- | ----- |
+| Electronics               | 18    | 210  | 54      | 0     |
+| Food, Beverages & Tobacco | 45    | 0    | 0       | 0     |
+| Toys & Games              | 0     | 120  | 0       | 13    |
+| Apparel & Accessories     | 0     | 0    | 38      | 132   |
+| Baby & Toddler            | 0     | 0    | 33      | 235   |
+|                           |       |      |         |       |
+| Targeted Sum              | 270   | 1410 | 379     | 538   |
+| Targeted Rank             | 4     | 1    | 3       | 2     |
 
-- Mars has the most "in demand" products.
+- Mars has the most products in the "targeted" categories.
  
+***
+
+## Question 3 and Solution
+
+**3. How would you prioritize onboarding these suppliers? What data points drove that decision?**
+
+#### Answer:
+
+As described in the `Instructions` sheet, I provided the following answer:
+
+````excel
+I would prioritize onboarding the suppliers in the following order: Mars > Venus > Mercury > Earth.
+Logic/Methodology: As mentioned above, suppliers are evaluated based on most supply and high demand.
+Using the rankings generated from Q1-2 (refer to Analysis tab C17:F17 and C28:F28), Mars ranked "1" for both supply and demand,
+Venus ranked "2", Mercury ranked "3", and lastly, Earth ranked "4". 
+````
+
+- Prioritize suppliers in the following order: Mars > Venus > Mercury > Earth.
+
 ***
